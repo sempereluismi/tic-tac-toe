@@ -26,6 +26,8 @@ function App() {
     return pointsFromStorage ? JSON.parse(pointsFromStorage) : {x: 0, o: 0}
   })
 
+  const [initTurn, setInitTurn] = useState(TURNS.X)
+
 
   const updateBoard = (index) => {
 
@@ -56,7 +58,9 @@ function App() {
 
   const resetGame = () => {
     setBoard(Array(9).fill(null))
-    setTurn(TURNS.X)
+    const newInitTurn = initTurn === TURNS.X ? TURNS.O : TURNS.X
+    setInitTurn(newInitTurn)
+    setTurn(newInitTurn)
     setWinner(null)
 
     removeGameStorage()
